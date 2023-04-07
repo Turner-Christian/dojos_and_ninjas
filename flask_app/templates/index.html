@@ -22,7 +22,7 @@
         </div>
         <div class="card p-4 flex-fill m-3" style="width: 50%;">
             <h2 class="text-center">All Dojos</h2>
-            <div class="d-flex flex-column align-items-center border border-primary-subtle">
+            <div class="d-flex flex-column align-items-center border border-primary-subtle rounded">
                 {% for dojo in dojos %}
                     <a href="/dojos/show/{{dojo.id}}">{{dojo.name}}</a> 
                 {% endfor %}

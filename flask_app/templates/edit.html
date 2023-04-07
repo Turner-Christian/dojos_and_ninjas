@@ -11,7 +11,7 @@
 <body>
     <div class="container-fluid bg-dark d-flex flex-column align-items-center vh-100">
         <div class="card p-4 text-white bg-secondary">
-            <form action="/ninjas/create" method="POST">
+            <form action="/ninjas/send/{{dojo_id}}" method="POST">
                 <h1>Edit Ninja</h1>
                 <div>
                     <label class="form-label" for="first_name">First Name:</label>
@@ -25,9 +25,10 @@
                     <label class="form-label" for="age">Age:</label>
                     <input class="form-control" type="text" name="age" value="{{ninja.age}}">
                 </div>
+                <input type="hidden" name="id" value="{{ninja.id}}">
                 <div class="m-4">
                     <input class="btn bg-success" type="submit" value="Update">
-                    <a class="btn bg-warning" href="/dojos">Home</a>
+                    <a class="btn bg-warning" href="/dojos/show/{{dojo_id}}">Return</a>
                 </div>
             </form>
         </div>

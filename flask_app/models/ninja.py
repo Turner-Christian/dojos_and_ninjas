@@ -36,11 +36,14 @@ class Ninja:
         first_name=%(first_name)s,
         last_name=%(last_name)s,
         age=%(age)s,
-        updated_at=NOW(),
+        updated_at=NOW()
         WHERE id=%(id)s;
         """
         result = connectToMySQL(cls.db).query_db(query,data)
-        return result
+        if result:
+            return result
+        else:
+            return None
 
     @classmethod
     def ninja_show_one(cls,id):
