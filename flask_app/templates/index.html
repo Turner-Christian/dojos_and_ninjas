@@ -12,6 +12,13 @@
     <div class="container-fluid bg-dark d-flex flex-column align-items-center vh-100">
         <div class="card p-4 flex-fill m-3" style="width: 50%;">
             <h2>New Dojo</h2>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="text-danger">**{{message}}**</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
             <form action="/dojos/create" method="POST"">
                 <label class="form-label" for="name">Name:</label>
                 <input class="form-control" type="text" name="name">

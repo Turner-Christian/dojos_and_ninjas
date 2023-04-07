@@ -21,6 +21,13 @@
                     <label class="form-label" for="last_name">Last Name:</label>
                     <input class="form-control" type="text" name="last_name" value="{{ninja.last_name}}">
                 </div>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-warning m-3">**{{message}}**</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
                 <div>
                     <label class="form-label" for="age">Age:</label>
                     <input class="form-control" type="text" name="age" value="{{ninja.age}}">

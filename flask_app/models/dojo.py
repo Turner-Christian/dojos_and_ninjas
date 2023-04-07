@@ -1,5 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models import ninja
+from flask import flash
 
 class Dojo:
     db = 'dojos_and_ninjas_schema'
@@ -68,3 +69,11 @@ class Dojo:
             db_object.ninjas_list = new_object
             all_objects.append(new_object)
         return all_objects
+
+    @staticmethod
+    def validate_create(input):
+        is_valid = True
+        if len(input) < 3:
+            flash('Name must be at least 3 characters')
+            is_valid = False
+        return is_valid

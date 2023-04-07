@@ -1,4 +1,4 @@
-from flask import redirect,session,render_template,request
+from flask import redirect,session,render_template,request,flash
 from flask_app import app
 from flask_app.models.dojo import Dojo
 
@@ -9,6 +9,8 @@ def index():
 
 @app.route('/dojos/create', methods=['POST'])
 def create():
+    if not Dojo.validate_create(request.form):
+        return redirect('/dojos')
     dojo = Dojo.create_dojo(request.form)
     print(dojo)
     return redirect('/dojos')

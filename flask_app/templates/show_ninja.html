@@ -14,9 +14,16 @@
             <form action="/ninjas/create" method="POST">
                 <h1>New Ninja</h1>
                 <div>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p class="text-warning">**{{message}}**</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
                     <label class="form-label" for="dojo_id">Dojo:</label>
                     <select class="form-control" name="dojo_id" id="dojo_id">
-                        <option disabled selected value="Dojo...">Dojo...</option>
+                        <option selected value="disabled">Dojo...</option>
                         {% for dojo in dojos %}
                             <option class="form-control" value="{{dojo.id}}">{{dojo.name}}</option>
                         {% endfor %}
@@ -32,7 +39,7 @@
                 </div>
                 <div>
                     <label class="form-label" for="age">Age:</label>
-                    <input class="form-control" type="text" name="age">
+                    <input class="form-control" type="number" name="age">
                 </div>
                 <div class="m-4">
                     <input class="btn bg-success" type="submit" value="Create">

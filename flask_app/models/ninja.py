@@ -1,4 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask import flash
 
 class Ninja:
     db = 'dojos_and_ninjas_schema'
@@ -55,3 +56,34 @@ class Ninja:
             return cls(result[0])
         else:
             return None
+
+    @staticmethod
+    def validate_ninja(input):
+        is_valid = True
+        if input["dojo_id"] == 'disabled':
+            flash('Please pick a dojo')
+            is_valid = False
+        if len(input['first_name']) < 2:
+            flash('First name must be at least 2 characters')
+            is_valid = False
+        if len(input['last_name']) < 2:
+            flash('Last name must be at least 2 characters')
+            is_valid = False
+        if input['age'] < '18':
+            flash('Must be above 18 to join')
+            is_valid = False
+        return is_valid
+
+    @staticmethod
+    def validate_ninja_edit(input,age):
+        is_valid = True
+        if len(input['first_name']) < 2:
+            flash('First name must be at least 2 characters')
+            is_valid = False
+        if len(input['last_name']) < 2:
+            flash('Last name must be at least 2 characters')
+            is_valid = False
+        if input['age'] < str(age):
+            flash('You cant get younger!! (Nice try though)')
+            is_valid = False
+        return is_valid
